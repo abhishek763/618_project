@@ -1,5 +1,10 @@
 <html lang="en">
     <head>
+        <style>
+            table, th, td {
+              border: 1px solid black;
+            }
+        </style>
         <meta charset="utf-8">
         <title>15618 Project Parallel String Matching Algorithms</title>
     </head>
@@ -8,12 +13,61 @@
         <h2>Team Members: Abhishek Kumar and Runze Wang</h2>
         <a href="https://abhishek763.github.io/618project/">Project Webpage</a>
         <h3> Summary </h3>
-        <p> When the days are old</p>
+        <p> We are going to work on Parallelelizing  String Matching algorithms like Aho-Corasick, KMP, and Rabin Karp algorithms. These string search algorithms are sequential in nature, hence not efficient for large scale tasks like DNA Sequence Matching, Network Intrusion Detection (NID). We wish to explore their parallel implementations on GPUs. </p>
+        <p> Link to <a href="https://abhishek763.github.io/618project/15618_project_proposal_ak5_runzew.pdf"> Project Proposal</a> </p>
+
         <h3> Background </h3>
-        <p> When the days are old</p>
+        <p> The Aho-Corasick algorithm is used to find matching substrings for a set of patterns in a large input string. For example, given dictionary of words <span class="emphasized"> {a, ab, bab, bc, bca, c, caa} </span> and input text  <span class="emphasized"> abracadabra</span>, it must output a occurs at indexes 0, 3, 5, 7, 10, ab occurs at 0, 7, bab doesn't occur anywhere,.... and so on. </p>
+        <p> So it works on multiple patterns. It creates a Finite State Automaton which is similar to trie but with additional links which help in faster transition between states when matching fails. It was used in Unix command fgrep. It is used in various applications like network intrusion detection and bioinformatics for finding several input strings within a given large input string. If <em>n</em> is the length of the text and <em>m</em> be total number of characters in the search dictionary, the Aho-Corasick algorithm works in <em>O(n+m+z)</em> complexity where <em>z</em> is the total number of occurrences in text. </p>
+        <p> KMP algorithm is a linear time searching algorithm which given a pattern and text, finds all occurrences of the pattern in the text. If the length of the text is <em>n</em> and <em>m</em> is the length of the pattern, then KMP works in Time Complexity <em>O(n+m)</em>. </p>
+        <p>Rabin Karp is another string matching algorithm which uses hashing. It uses a rolling hash to eliminate positions of the text that cannot match the pattern, and then checks for the exact match at the positions where hash of the pattern matches the hash of the rolling window. </p>
+        <p>All these algorithms are very good for matching patterns sequentially. In this project, we will explore their adaptations in parallel domain especially over large input text size. Network Intrusion Detection Systems (NIDS) use string matching engine to identify network attacks by inspecting packet content against thousands of predefined patterns. Due to the increasing number of attacks, traditional string matching approaches on uni-processors may not be sufficient. Parallel String matching can be very helpful for other applications too like DNA Sequence matching, large scale text mining and digital forensics. </p>
+
         <h3> The Challenge </h3>
-        <p> When the days are old</p>
+        <p> One of the biggest challenges for this project is that there isn’t enough literature around it. The workload will be a large number of very large input text. We would look at different numbers of patterns (small, moderate, large). But, we will assume that size of pattern will be much less than the size of the text. Based on the implementation, there might be less locality in the data. We will get to know more about this once we do our experiments.</p>
         <h3> Resources </h3>
-        <p> When the days are old</p>
+        <p> We will be using GPUs on GHC machines mostly for our work. We might consider PSC machines if we end up using MPI or OpenMP. But for now, the plan is to work with CUDA.</p>
+        <p> We found a parallel implementation of Parallel Failureless Aho-Corasick algorithm at <a href="https://code.google.com/archive/p/pfac/"> Parallel Failure Less Aho-Corasick</a>. PFAC is a modified version of Aho-Corasick where the links used in case of failed matches are absent which might be beneficial for some applications. We will explore this in our project. </p>
+        <p> We will try to run and benchmark our implementation against it. We plan to have our own implementation for both parallel and sequential versions of the algorithm. We will be taking help from this paper regarding Parallel Aho-Corasick algorithms (PFAC) <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5683320"> Accelerating String Matching Using Multi-threaded Algorithm on GPU  </a></p>
+
+        <h3> Goals and Deliverables </h3>
+        <p> <strong>75% Goals:</strong> Sequential and CUDA Parallel implementation of Aho-Corasick, KMP, and Rabin Karp Algorithms </p>
+        <p> <strong>100% Goals:</strong>  75% Goals + A very good analysis of the performance of sequential algorithms vs parallel algorithms, analyzing bottlenecks in workload and comparable performance against the reference implementation of PFAC. </p>
+        <p> <strong>125% Goals:</strong> 100% Goals + Trying other parallelization techniques like SIMD/Cilk/OpenMP/MPI/Charm <strong>OR</strong> achieve significantly better performance than reference implementation of PFAC.</p>
+
+        <h3> Platform Choice</h3>
+        <p> We aim to use GPU in the GHC machines. General Purpose GPUs have been very successful at a lot of parallel tasks and we feel that we should explore their use-case on the parallel string matching problem. A good performance on GPU will mean that many systems like Network Intrusion Detection and DNA Sequence matching can use GPUs for improving performance. </p>
+
+        <h3> Schedule </h3>
+        <table style="width:80%">
+            <tr>
+              <th>Time</th>
+              <th>Work</th>
+            </tr>
+            <tr>
+              <td>13 Nov - 19 Nov</td>
+              <td>Implement Sequential Versions of Algorithms</td>
+            </tr>
+            <tr>
+                <td>20 Nov - 26 Nov</td>
+                <td>Implement Parallel version of Aho-Corasick</td>
+            </tr>
+            <tr>
+                <td>27 Nov - 30 Nov</td>
+                <td>Work towards Project Milestone</td>
+            </tr>
+            <tr>
+                <td>1 Dec - 7 Dec</td>
+                <td>Work on Parallel version of KMP and Rabin Karp</td>
+            </tr>
+            <tr>
+                <td>8 Dec - 14 Dec</td>
+                <td>Do Analysis over different algorithms</td>
+            </tr>
+            <tr>
+                <td>14 Dec - 17 Dec</td>
+                <td>Work towards Final Project Report and Poster</td>
+            </tr>
+          </table>
     </body>
 </html>
