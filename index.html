@@ -12,6 +12,9 @@
         <h1>Title: 15618 Project Parallel String Matching Algorithms</h1>
         <h2>Team Members: Abhishek Kumar and Runze Wang</h2>
         <a href="https://abhishek763.github.io/618project/">Project Webpage</a>
+        <hr>
+        <hr>
+        <h2>Project Proposal</h2>
         <h3> Summary </h3>
         <p> We are going to work on Parallelelizing  String Matching algorithms like Aho-Corasick, KMP, and Rabin Karp algorithms. These string search algorithms are sequential in nature, hence not efficient for large scale tasks like DNA Sequence Matching, Network Intrusion Detection (NID). We wish to explore their parallel implementations on GPUs. </p>
         <p> Link to <a href="https://abhishek763.github.io/618project/15618_project_proposal_ak5_runzew.pdf"> Project Proposal</a> </p>
@@ -69,5 +72,47 @@
                 <td>Work towards Final Project Report and Poster</td>
             </tr>
           </table>
+          <hr>
+          <hr>
+        <h2>Milestone Check-in</h2>
+        <p> Link to <a href="https://abhishek763.github.io/618project/15618_Milestone_Report.pdf"> Milestone Report </a> </p>
+        <h3>Summary of progress</h3>
+        <p>At this point, we have completed implementing sequential versions of Aho-Corasick, KMP, and Rabin Karp pattern matching algorithms. We have also completed implementing parallel versions of Aho-Corasick, KMP, and Rabin Karp via OpenMP. In particular, we parallelized the construction of AC automata by utilizing a lock-free Trie insertion algorithm and parallel BFS traversal for constructing fail links. We have also implemented an initial version of parallel failureless Aho-Corasick using CUDA as described in the project proposal. We have finished initial rounds of benchmarking to make sure the parallel implementations exhibit speedup against the sequential implementation. The current parallel implementations of string matching algorithms via OpenMP and parallel failureless Aho-Corasick via CUDA both show great speedups against the serial implementation.</p>
+        <p>	Compared with the schedule in the project proposal, we believe that we are on the schedule if not being ahead of schedule. We believe that we are still able to finish the deliverables mentioned in the project proposal, namely (1) a CUDA implementation of KMP and Rabin Karp and (2) benchmarking different implementations and reasoning about the performance of different implementations under varying assumptions about the patterns and the text. </p>
+        <h3>Updated Schedule</h3>
+        <table style="width:80%">
+            <tr>
+              <th>Time</th>
+              <th>Task</th>
+              <th>Who?</th>
+            </tr>
+            <tr>
+              <td>1 Dec - 5 Dec</td>
+              <td>Finish CUDA-based implementations of Rabin Karp and KMP</td>
+              <td>Both</td>
+            </tr>
+            <tr>
+                <td>6 Dec - 10 Dec</td>
+                <td>Design benchmarks to measure speedup, memory access pattern, and bandwidth utilization</td>
+                <td>Both</td>
+            </tr>
+            <tr>
+                <td>11 Dec - 14 Dec</td>
+                <td>Perform experiments and iteratively improve implementations
+                </td>
+                <td>Both</td>
+            </tr>
+            <tr>
+                <td>15 Dec - 17 Dec</td>
+                <td>Finish Report and Poster</td>
+                <td>Both</td>
+          </table>
+          <h3>Plan for Poster Session</h3>
+          <p>In the poster session, we will present our analysis using graphs and plots and we will show different benchmarks that we use to reason about the performance of different string search implementations on different kinds of queries (patterns).</p>
+          <h3>Potential Issues</h3>
+          <p>We don't foresee any potential problems as of now.
+            However, designing good benchmarks can be nontrivial. We need to analyze the algorithm theoretically, think about common applications of pattern searching algorithms, find relevant corpus for evaluation, conduct the experiment on GHC or even PSC machines, and iteratively improve our implementations based on the feedback of profilers. Our analysis will not be restricted to the speedup. We will also reason about why the data pattern makes a particular algorithm good or bad.</p>
+            <hr>
+            <hr>
     </body>
 </html>
