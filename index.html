@@ -114,5 +114,16 @@
             However, designing good benchmarks can be nontrivial. We need to analyze the algorithm theoretically, think about common applications of pattern searching algorithms, find relevant corpus for evaluation, conduct the experiment on GHC or even PSC machines, and iteratively improve our implementations based on the feedback of profilers. Our analysis will not be restricted to the speedup. We will also reason about why the data pattern makes a particular algorithm good or bad.</p>
             <hr>
             <hr>
+            <h2>Finals</h2>
+            <p> Link to <a href="https://abhishek763.github.io/618project/15618_Final_Report.pdf"> Final Report </a> </p>
+            <p> Link to <a href="https://abhishek763.github.io/618project/15618_Poster.pdf"> Poster Slides </a> </p>
+            <h3> Conclusion </h3>
+            <p>Our experimental results suggest that Rabin-Karp has relatively stable, though poor, performance. This arises from the fact that Rabin-Karp has regular memory access patterns. For each position of the text, Rabin-Karp does a constant amount of work, except if there are matches and we want to use brute-force to verify hashes do not give us false matches. Rabin-Karp is slow because it uses expensive operations like multiplication and taking modulus, which are costly on modern CPU architectures. Over a single pattern, KMP performs better than Rabin-Karp in general, though KMP achieves greater speedup when branching predictors can predict whether we are going to match against the pattern further or if we are not going to match against the pattern further. KMP does not perform well if at each point, we have 50% chance of having a match and 50% chance of not having a match. Even though Aho-Corasick is theoretically equivalent to KMP over a single pattern, the less compact representation leads to a higher cache miss rate than KMP, so the performance is slightly worse.</p>
+            <p>
+              Over multiple patterns, the sequential and OpenMP implementations of Aho-Corasick have huge advantages over sequential and OpenMP implementations of Rabin-Karp and KMP. This is because Aho-Corasick does not need to iterate through the text for multiple times when there are multiple patterns. Our experimental results suggest that in general, implementing Aho-Corasick on CUDA using the strategy where each thread is responsible for one possible starting position of the match leads to best results, though this strategy seems to suffer when for most positions, we are able to match the pattern for extended length.</p>
+              <p>
+              Finally, our experiments on parallel construction of Aho-Corasick automata using OpenMP show that lock-free insertion algorithms to Trie and parallel BFS can often lead to some, though not perfect, speedup. When the size of the patterns does not fit into L2 cache or L3 cache, though, the matching phase would slow down significantly due to cache misses and high cost of communication.</p>
+              <hr>
+              <hr>
     </body>
 </html>
