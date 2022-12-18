@@ -117,6 +117,7 @@
             <h2>Finals</h2>
             <p> Link to <a href="https://abhishek763.github.io/618project/15618_Final_Report.pdf"> Final Report </a> </p>
             <p> Link to <a href="https://abhishek763.github.io/618project/15618_Poster.pdf"> Poster Slides </a> </p>
+            <p> Link to <a href="https://github.com/runzew-295/618-final-project"> Source Code </a></p>
             <h3> Conclusion </h3>
             <p>Our experimental results suggest that Rabin-Karp has relatively stable, though poor, performance. This arises from the fact that Rabin-Karp has regular memory access patterns. For each position of the text, Rabin-Karp does a constant amount of work, except if there are matches and we want to use brute-force to verify hashes do not give us false matches. Rabin-Karp is slow because it uses expensive operations like multiplication and taking modulus, which are costly on modern CPU architectures. Over a single pattern, KMP performs better than Rabin-Karp in general, though KMP achieves greater speedup when branching predictors can predict whether we are going to match against the pattern further or if we are not going to match against the pattern further. KMP does not perform well if at each point, we have 50% chance of having a match and 50% chance of not having a match. Even though Aho-Corasick is theoretically equivalent to KMP over a single pattern, the less compact representation leads to a higher cache miss rate than KMP, so the performance is slightly worse.</p>
             <p>
